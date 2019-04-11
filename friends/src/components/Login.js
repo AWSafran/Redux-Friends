@@ -36,24 +36,35 @@ class Login extends Component {
     }
 
     render(){
+
+        console.log(this.props);
         return(
-            <LoginForm onSubmit={(e) => this.loginSubmit(e)}>
-                <TypeForm 
-                    type='text'
-                    name='username'
-                    value={this.state.username}
-                    onChange={this.handleChanges}
-                />
-                <TypeForm 
-                    type='password'
-                    name='password'
-                    value={this.state.password}
-                    onChange={this.handleChanges}
-                />
-                <input type="submit" />
-            </LoginForm>
+
+            <div className='loginContainer'>
+                <LoginForm onSubmit={(e) => this.loginSubmit(e)}>
+                    <TypeForm 
+                        type='text'
+                        name='username'
+                        value={this.state.username}
+                        onChange={this.handleChanges}
+                    />
+                    <TypeForm 
+                        type='password'
+                        name='password'
+                        value={this.state.password}
+                        onChange={this.handleChanges}
+                    />
+                    <input type="submit" />
+                </LoginForm>
+            </div>
         )
     }
 }
 
-export default connect(null, { login })(Login);
+const mapStateToProps = state =>{
+    return{
+        loggingIn: state.loggingIn
+    }
+}
+
+export default connect(mapStateToProps, { login })(Login);

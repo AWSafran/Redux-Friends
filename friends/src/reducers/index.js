@@ -1,4 +1,4 @@
-import { LOGIN_START } from "../actions";
+import { LOGIN_START, LOGIN_SUCCESS } from "../actions";
 
 const initialState = {
     loggingIn: false,
@@ -13,7 +13,14 @@ function reducer(state = initialState, action){
         case LOGIN_START:
             return({
                 ...state,
-                loggingIn: true
+                loggingIn: true,
+                error: ''
+            })
+        case LOGIN_SUCCESS:
+            return({
+                ...state,
+                loggingIn: false,
+                error: ''
             })
         default:
         return{
