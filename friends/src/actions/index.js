@@ -37,3 +37,22 @@ export const getFriends = () => dispatch =>{
 
 
 }
+
+
+export const ADD_FRIENDS_START = 'ADD_FRIENDS_START';
+export const ADD_FRIENDS_SUCCESS = 'ADD_FRIENDS_SUCCESS';
+
+export const addFriend = friend => dispatch =>{
+    console.log("in the add friend action creator");
+
+    dispatch({ type: ADD_FRIENDS_START});
+
+    axiosWithAuth().post('http://localhost:5000/api/friends', friend)
+        .then(res => {
+            dispatch({
+                type: ADD_FRIENDS_SUCCESS,
+                payload: res.data
+            })
+        })
+        .catch(err => console.log(err));
+}

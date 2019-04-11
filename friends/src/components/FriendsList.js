@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getFriends } from '../actions/index';
 import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
 
 class FriendsList extends Component{
     constructor(props){
@@ -14,6 +15,7 @@ class FriendsList extends Component{
     render(){
         return(
             <div className="friendsListContainer">
+                {this.props.fetchingFriends && <Loader type='Plane'/>}
                 {this.props.friends.map(friend => <div>{friend.name}</div>)}
             </div>
         )
@@ -22,7 +24,8 @@ class FriendsList extends Component{
 
 const mapStateToProps = state =>{
     return{
-        friends: state.friends
+        friends: state.friends,
+        fetchingFriends: state.fetchingFriends
     }
 }
 
