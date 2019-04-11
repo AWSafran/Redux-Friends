@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { login } from '../actions/index';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 const TypeForm = styled.input`
    
@@ -56,6 +57,7 @@ class Login extends Component {
                     />
                     <input type="submit" />
                 </LoginForm>
+                {localStorage.getItem('token') && <Redirect to="/friendsList" />}
             </div>
         )
     }
